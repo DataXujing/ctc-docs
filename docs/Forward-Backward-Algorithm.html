@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Connectionist Temporal Classification(CTC)</title>
+  <meta name="description" content="CTC教程">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Connectionist Temporal Classification(CTC)" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="CTC教程" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Connectionist Temporal Classification(CTC)" />
+  
+  <meta name="twitter:description" content="CTC教程" />
+  
+
+<meta name="author" content="徐静">
+
+
+<meta name="date" content="2018-08-10">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="From-Outputs-to-Labellings.html">
+<link rel="next" href="section-4.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="css\style.css" type="text/css" />
+<link rel="stylesheet" href="css\toc.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="https://github.com/DataXujing/CTC" target='blank'>项目地址</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>摘要</a></li>
+<li class="chapter" data-level="1" data-path="Background.html"><a href="Background.html"><i class="fa fa-check"></i><b>1</b> 背景</a></li>
+<li class="chapter" data-level="2" data-path="From-Outputs-to-Labellings.html"><a href="From-Outputs-to-Labellings.html"><i class="fa fa-check"></i><b>2</b> 从输出到标签</a><ul>
+<li class="chapter" data-level="2.1" data-path="From-Outputs-to-Labellings.html"><a href="From-Outputs-to-Labellings.html#section-2.1"><i class="fa fa-check"></i><b>2.1</b> 符号表示</a></li>
+<li class="chapter" data-level="2.2" data-path="From-Outputs-to-Labellings.html"><a href="From-Outputs-to-Labellings.html#section-2.2"><i class="fa fa-check"></i><b>2.2</b> 空格的作用</a></li>
+<li class="chapter" data-level="2.3" data-path="From-Outputs-to-Labellings.html"><a href="From-Outputs-to-Labellings.html#section-2.3"><i class="fa fa-check"></i><b>2.3</b> 双向或单向网络</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="Forward-Backward-Algorithm.html"><a href="Forward-Backward-Algorithm.html"><i class="fa fa-check"></i><b>3</b> 前向传播与反向传播</a><ul>
+<li class="chapter" data-level="3.1" data-path="Forward-Backward-Algorithm.html"><a href="Forward-Backward-Algorithm.html#section-3.1"><i class="fa fa-check"></i><b>3.1</b> 前向传播</a></li>
+<li class="chapter" data-level="3.2" data-path="Forward-Backward-Algorithm.html"><a href="Forward-Backward-Algorithm.html#section-3.2"><i class="fa fa-check"></i><b>3.2</b> 反向传播</a></li>
+<li class="chapter" data-level="3.3" data-path="Forward-Backward-Algorithm.html"><a href="Forward-Backward-Algorithm.html#log"><i class="fa fa-check"></i><b>3.3</b> log尺度变换</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="section-4.html"><a href="section-4.html"><i class="fa fa-check"></i><b>4</b> 损失函数</a><ul>
+<li class="chapter" data-level="4.1" data-path="section-4.html"><a href="section-4.html#section-4.1"><i class="fa fa-check"></i><b>4.1</b> 损失函数的定义</a></li>
+<li class="chapter" data-level="4.2" data-path="section-4.html"><a href="section-4.html#bptt"><i class="fa fa-check"></i><b>4.2</b> 损失函数的梯度计算(BPTT)</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="decoding.html"><a href="decoding.html"><i class="fa fa-check"></i><b>5</b> Decoding</a><ul>
+<li class="chapter" data-level="5.1" data-path="decoding.html"><a href="decoding.html#best-path-decoding"><i class="fa fa-check"></i><b>5.1</b> Best Path Decoding</a></li>
+<li class="chapter" data-level="5.2" data-path="decoding.html"><a href="decoding.html#prefix-search-decoding"><i class="fa fa-check"></i><b>5.2</b> Prefix Search Decoding</a></li>
+<li class="chapter" data-level="5.3" data-path="decoding.html"><a href="decoding.html#constrained-decoding"><i class="fa fa-check"></i><b>5.3</b> Constrained Decoding</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="example.html"><a href="example.html"><i class="fa fa-check"></i><b>6</b> Example</a></li>
+<li class="chapter" data-level="7" data-path="discussion.html"><a href="discussion.html"><i class="fa fa-check"></i><b>7</b> Discussion</a></li>
+<li class="chapter" data-level="8" data-path="tensorflow-api.html"><a href="tensorflow-api.html"><i class="fa fa-check"></i><b>8</b> tensorflow API</a></li>
+<li class="chapter" data-level="9" data-path="section-9.html"><a href="section-9.html"><i class="fa fa-check"></i><b>9</b> 参考文献</a></li>
+<li class="divider"></li>
+<li><a href="https://dataxujing.github.io/" target="blank">个人主页</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Connectionist Temporal Classification(CTC)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="Forward-Backward-Algorithm" class="section level1">
+<h1><span class="header-section-number">第 3 章</span> 前向传播与反向传播</h1>
+<p>我们来看一下CTC是怎样训练的……</p>
+<p>在对符号做了一些定义之后，我们接下来看看CTC的前向传播的过程。我们前向传播就是要去计算 <span class="math inline">\(p(l|x)\)</span> 由于一个序列 <span class="math inline">\(l\)</span> 通常可以有多条路径经过映射后得到，而随着序列 <span class="math inline">\(l\)</span> 长度的增加，相对应的路径的数目是成指数增加的，因此我们需要一种高效的算法来计算它。</p>
+<p>有一种类似于HMM的前向传播的算法可以帮助我们来解决这个问题。它的关键点就是那些与序列 <span class="math inline">\(l\)</span> 对应的路径概率都可以通过迭代来计算得出。</p>
+<div id="section-3.1" class="section level2">
+<h2><span class="header-section-number">3.1</span> 前向传播</h2>
+<p>对于一个特定的序列<span class="math inline">\(l\)</span> ，我们定义前向变量<span class="math inline">\(\alpha(t,u)\)</span>为输出所有长度为<span class="math inline">\(t\)</span>，且经过<span class="math inline">\(F\)</span> 映射之后为序列<span class="math inline">\(l\)</span> 的路径的概率之和，用公式表达如下所示： <span class="math display">\[\alpha(t,u)=\sum_{\pi \in V(t,u)}\prod_{i=1}^{t}y_{\pi_i}^{i}\]</span> 其中<span class="math inline">\(V(t,u)=\{\pi \in A^{&#39;T}:F(\pi)=l_{1:u/2},\pi_t=l_u^{&#39;}\}\)</span> 代表了所有满足经过 <span class="math inline">\(F\)</span> 映射之后为序列<span class="math inline">\(l\)</span> ，长度为t的路径集合，且在第t时间步的输出为label: <span class="math inline">\(l_u^{&#39;}\)</span>.注意这里的<span class="math inline">\(l^{&#39;}\)</span>是对<span class="math inline">\(l\)</span>进行空白插入得到的，且插入后的维度定义为<span class="math inline">\(U^{&#39;}=2U+1\)</span>,其中<span class="math inline">\(U\)</span>表示<span class="math inline">\(l\)</span>的长度。</p>
+<p>正如我们将看到的，在时间t的前向变量可以从时间t-1的递归计算。</p>
+<p>所有正确路径的开头必须是空格或者label：<span class="math inline">\(l_1\)</span>，因此存在着初始化的约束条件：</p>
+<p><span class="math display">\[\alpha(1,1) = y_b^1\]</span></p>
+<p><span class="math display">\[\alpha(1,2) = y_{l_1}^1\]</span></p>
+<p><span class="math display">\[\alpha(1,u) = 0 \quad \forall u&gt;2\]</span></p>
+<p>我们通过下图去理解这个过程：</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-3"></span>
+<img src="pic/fig_3.png" alt="CTC forward-backward algorithm" width="150%" />
+<p class="caption">
+图 3.1: CTC forward-backward algorithm
+</p>
+</div>
+<p>上图中，白色的点表示一个label，黑色的点表示空格，纵向每一列表示的是路径的长度T（或者时刻T），箭头代表了路径下一个时刻可以输出到哪个label去。如果在时刻 1 的 label 为空格，那么路径在下一时刻只有两个选择，第一个还是输出空格，第二个就是输出序列 <span class="math inline">\(l_1\)</span> 中对应的空格的下一个label：C；如果在时刻2的 label 为 C，那么在时刻3，它可以有三种选择：第一种就是输出还是 C，第二种是输出为空格，第三种是直接输出A。</p>
+<p>从上图可以看出长度为T的输出路径映射到序列 <span class="math inline">\(l\)</span>：cat， 可以由第T步为label：t(cat中的字母t)的所有路径和第T步为空格的所有路径的概率之和来表示。</p>
+<p>因此,<span class="math inline">\(p(l|x)\)</span>可以由前向变量来表示，即为</p>
+<p><span class="math display">\[p(l|x)=\alpha(T,U^{&#39;})+\alpha(T,U^{&#39;}-1)\]</span></p>
+<p>其中<span class="math inline">\(\alpha(T,U^{&#39;})\)</span>可以理解为所有路径长度为<span class="math inline">\(T\)</span>，经过<span class="math inline">\(F\)</span>映射之后为序列<span class="math inline">\(l\)</span>,并且第<span class="math inline">\(T\)</span>时刻的输出的label为<span class="math inline">\(l^{&#39;}_U\)</span>或者<span class="math inline">\(l^{&#39;}_{U-1}\)</span>。也就是路径的最后一个是否包含了空格。</p>
+<p>现在我们来引出其推导公式：</p>
+<p><span class="math display">\[\alpha(t,u)=y_{l^{&#39;}_u}^t\sum_{i=f(u)}^u\alpha(t-1,i)\]</span></p>
+<p>其中</p>
+<p><img src="pic/fig_5.png" width="150%" style="display: block; margin: auto;" /></p>
+<pre><code>$$
+\begin{equation}
+f(u)=\left\{
+\begin{aligned}
+&amp; u-1  &amp; if \quad l_u^{&#39;}=blank \quad or \quad l_{u-2}^{&#39;}=l_u^{&#39;}\\
+&amp; u-2 &amp; otherwise \\
+\end{aligned}
+\right.
+\end{equation}
+$$</code></pre>
+<p>如何理解这个递推公式呢，很简单，我们可以看下面递推图，就以时刻T为空格的前向变量为例，由于我们之前讲过了如果当前时刻的输出为空格，下一时刻路径输出只有两种可能性，而如果我们当前时刻是空格，上一时刻的输出从图中可以看出也是由两种可能性，一种是在T-1时刻输出为空格，另外一种是在T-1时刻输出为T。因此我们只要计算出T-1时刻输出为空格的所有正确路径的概率之和以及在T-1时刻输出为T的所有路径的概率之和，再乘上T时刻输出为空格的概率 <span class="math inline">\(y_{l_u^{&#39;}}^t\)</span>，就可以得到前向变量<span class="math inline">\(\alpha(t,u)\)</span>。时刻T为label：T的前向变量的求法和空格的类似，只是它由三种可能情况求和再乘上 <span class="math inline">\(y_{l_u^{&#39;}}^t\)</span> 得到的。</p>
+<p>详看下面的示意图：</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-5"></span>
+<img src="pic/fig_4.png" alt="CTC 递推关系示意图" width="100%" />
+<p class="caption">
+图 3.2: CTC 递推关系示意图
+</p>
+</div>
+</div>
+<div id="section-3.2" class="section level2">
+<h2><span class="header-section-number">3.2</span> 反向传播</h2>
+<p>与前向传播类似，首先定义一个反向变量<span class="math inline">\(\beta(t,u)\)</span>，他的含义是从<span class="math inline">\(t+1\)</span>时刻开始，在前向变量<span class="math inline">\(\alpha(t,u)\)</span>上添加路径<span class="math inline">\(\pi^{&#39;}\)</span>,使得最后通过<span class="math inline">\(F\)</span>映射之后为序列<span class="math inline">\(l\)</span>的概率之和，用公式表示为：</p>
+<p><span class="math display">\[\beta(t,u) = \sum_{\pi \in W(t,u)} \prod_{i=1}^{T-t}y_{\pi_i}^{t+i}\]</span></p>
+<p>其中<span class="math inline">\(W(t,u) = \{\pi \in A^{&#39;T-t}: F(\pi^{&#39;}+\pi)=l, \forall \pi^{&#39;} \in V(t,u) \}\)</span></p>
+<p>按照前向传播的图的举例说明：假设我们在T-2时刻路径输出为label:A,那么此时的反向变量的求法是在T-2时刻开始，所有能到达T时刻输出为空格或者label：T的“剩余”路径<span class="math inline">\(\pi^{&#39;}\)</span>的概率之和。</p>
+<p>反向传播也有相对应的初始化有条件：</p>
+<p><span class="math display">\[\beta(T,U^{&#39;})=\beta(T,U^{&#39;}-1)=1\]</span> <span class="math display">\[\beta(T,u^{&#39;}) = 0, \quad \forall u^{&#39;} &lt; U^{&#39;}-1\]</span></p>
+<p>他的递推公式如下所示:</p>
+<p><span class="math display">\[\beta(t,u) = \sum_{i=u}^{g(u)}\beta(t+1,i)y_{l_{i}^{&#39;}}^{t+1}\]</span></p>
+<p>其中</p>
+<p><img src="pic/fig_6.png" width="150%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="log" class="section level2">
+<h2><span class="header-section-number">3.3</span> log尺度变换</h2>
+<p>在现实中，不论是计算前向变量还是计算反向变量，都会涉及到大量的概率乘积的运算，概率都是小于1的数进行乘积运算时计算机在处理时会使得趋于0的数近似于0(underflows:你可以在R中输入<code>(sqrt(2))^2==2</code>就可以看到这种现象),因此做对数变换，变换完之后，变量中的加法运算就不方便了，然后就又用了一个trick:</p>
+<p><span class="math display">\[\ln(a+b)=\ln a+ \ln (1+e^{\ln b - \ln a})\]</span></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="From-Outputs-to-Labellings.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="section-4.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": ["my_CTC.pdf", "my_CTC.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

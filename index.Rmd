@@ -1,0 +1,17 @@
+--- 
+title: "Connectionist Temporal Classification(CTC)"
+author: "徐静"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+description: "CTC教程"
+---
+
+# 摘要 {-}
+
+本材料介绍了the connectionist temporal classification(CTC) output layer for recurrent neural networks(Graves et al.,2006), 正如CTC的名字所示它被用来处理带有时序的分类任务，特别是输入和输出label的对应关系在一起未知的这样的序列标签问题。不像一些混合方法(例如：声学模型和语言模型混合) CTC的所有方面都集成在一个单一的神经网络中，不需要在和HMM进行结合；他同时也不需预分解训练数据或者在网络输出中额外的提取标签序列。实验表明在语音识别(ASR)和手写字识别(OCR)上BLSTM+CTC相比一般的HMMs和HMM-NN混合的效果要好很多，同时相比一些比较新的序列标注算法，例如：large margin HMMs(sha and saul,2006)和condational random fields(Lafferty et al.,2001)也要好很多。
+
+第一部分我们将介绍CTC被使用在带有时序的分类任务上的原因或动机；第二部分定义CTC的输出与标签序列的对应关系；第三部分提供了一个算法来有效的估计标签序列出现的概率；第四部分网络训练中的CTC损失函数介绍；第五部分介绍了CTC中的decode方法；第六部分通过例子说明CTC；第七部分介绍了CTC和HMMs的区别；第八部分介绍了在tensorflow中的CTC API函数接口和参数。

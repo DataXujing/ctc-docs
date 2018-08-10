@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Connectionist Temporal Classification(CTC)</title>
+  <meta name="description" content="CTC教程">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Connectionist Temporal Classification(CTC)" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="CTC教程" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Connectionist Temporal Classification(CTC)" />
+  
+  <meta name="twitter:description" content="CTC教程" />
+  
+
+<meta name="author" content="徐静">
+
+
+<meta name="date" content="2018-08-10">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="index.html">
+<link rel="next" href="From-Outputs-to-Labellings.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="css\style.css" type="text/css" />
+<link rel="stylesheet" href="css\toc.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="https://github.com/DataXujing/CTC" target='blank'>项目地址</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>摘要</a></li>
+<li class="chapter" data-level="1" data-path="Background.html"><a href="Background.html"><i class="fa fa-check"></i><b>1</b> 背景</a></li>
+<li class="chapter" data-level="2" data-path="From-Outputs-to-Labellings.html"><a href="From-Outputs-to-Labellings.html"><i class="fa fa-check"></i><b>2</b> 从输出到标签</a><ul>
+<li class="chapter" data-level="2.1" data-path="From-Outputs-to-Labellings.html"><a href="From-Outputs-to-Labellings.html#section-2.1"><i class="fa fa-check"></i><b>2.1</b> 符号表示</a></li>
+<li class="chapter" data-level="2.2" data-path="From-Outputs-to-Labellings.html"><a href="From-Outputs-to-Labellings.html#section-2.2"><i class="fa fa-check"></i><b>2.2</b> 空格的作用</a></li>
+<li class="chapter" data-level="2.3" data-path="From-Outputs-to-Labellings.html"><a href="From-Outputs-to-Labellings.html#section-2.3"><i class="fa fa-check"></i><b>2.3</b> 双向或单向网络</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="Forward-Backward-Algorithm.html"><a href="Forward-Backward-Algorithm.html"><i class="fa fa-check"></i><b>3</b> 前向传播与反向传播</a><ul>
+<li class="chapter" data-level="3.1" data-path="Forward-Backward-Algorithm.html"><a href="Forward-Backward-Algorithm.html#section-3.1"><i class="fa fa-check"></i><b>3.1</b> 前向传播</a></li>
+<li class="chapter" data-level="3.2" data-path="Forward-Backward-Algorithm.html"><a href="Forward-Backward-Algorithm.html#section-3.2"><i class="fa fa-check"></i><b>3.2</b> 反向传播</a></li>
+<li class="chapter" data-level="3.3" data-path="Forward-Backward-Algorithm.html"><a href="Forward-Backward-Algorithm.html#log"><i class="fa fa-check"></i><b>3.3</b> log尺度变换</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="section-4.html"><a href="section-4.html"><i class="fa fa-check"></i><b>4</b> 损失函数</a><ul>
+<li class="chapter" data-level="4.1" data-path="section-4.html"><a href="section-4.html#section-4.1"><i class="fa fa-check"></i><b>4.1</b> 损失函数的定义</a></li>
+<li class="chapter" data-level="4.2" data-path="section-4.html"><a href="section-4.html#bptt"><i class="fa fa-check"></i><b>4.2</b> 损失函数的梯度计算(BPTT)</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="decoding.html"><a href="decoding.html"><i class="fa fa-check"></i><b>5</b> Decoding</a><ul>
+<li class="chapter" data-level="5.1" data-path="decoding.html"><a href="decoding.html#best-path-decoding"><i class="fa fa-check"></i><b>5.1</b> Best Path Decoding</a></li>
+<li class="chapter" data-level="5.2" data-path="decoding.html"><a href="decoding.html#prefix-search-decoding"><i class="fa fa-check"></i><b>5.2</b> Prefix Search Decoding</a></li>
+<li class="chapter" data-level="5.3" data-path="decoding.html"><a href="decoding.html#constrained-decoding"><i class="fa fa-check"></i><b>5.3</b> Constrained Decoding</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="example.html"><a href="example.html"><i class="fa fa-check"></i><b>6</b> Example</a></li>
+<li class="chapter" data-level="7" data-path="discussion.html"><a href="discussion.html"><i class="fa fa-check"></i><b>7</b> Discussion</a></li>
+<li class="chapter" data-level="8" data-path="tensorflow-api.html"><a href="tensorflow-api.html"><i class="fa fa-check"></i><b>8</b> tensorflow API</a></li>
+<li class="chapter" data-level="9" data-path="section-9.html"><a href="section-9.html"><i class="fa fa-check"></i><b>9</b> 参考文献</a></li>
+<li class="divider"></li>
+<li><a href="https://dataxujing.github.io/" target="blank">个人主页</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Connectionist Temporal Classification(CTC)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="Background" class="section level1">
+<h1><span class="header-section-number">第 1 章</span> 背景</h1>
+<p>纯基于神经网络的语音识别有弊端：训练的过程中我们需要对于每一个音素或每一个帧或每一个时间段上对应的输入来很好的对应好输出，这样就会产生两个主要的问题：</p>
+<ul>
+<li><p>训练数据要预分割成与标签对应（也就是我们说的文本语音对其）(对齐很繁琐并且不准确)</p></li>
+<li><p>这样训练出来的是局部分类任务，序列的全局方面，例如两个标签的可能性 连续出现，必须外部建模。事实上，没有某种形式的后处理，最终标签序列不能被可靠地推断。</p></li>
+</ul>
+<p>因此CTC（Connectionist temporal classification）就应运而生啦。</p>
+<p>为什么CTC就不需要去对齐语音和文本呢？因为CTC它允许我们的神经网络在任意一个时间段预测label，只有一个要求：就是输出的序列顺序只要是正确的就ok啦~这样我们就不在需要让文本和语音严格对齐了，而且CTC输出的是整个序列标签，因此也不需要我们再去做一些后处理操作。</p>
+<p>图1.1说明了CTC和framewise在语音识别应用中的区别。</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-1"></span>
+<img src="pic/fig1.png" alt="CTC and framewise classification networks applied to a speech signal" width="100%" />
+<p class="caption">
+图 1.1: CTC and framewise classification networks applied to a speech signal
+</p>
+</div>
+<p>有色线条是输出激活，对应于特定时间观察音素的概率。CTC网络只预测音素序列(通常为一系列尖峰，由“空白”，或空预测分隔，其概率以灰虚线表示。)然而framewise网络试图将它们与手动分割（垂直线）对齐。</p>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="From-Outputs-to-Labellings.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": ["my_CTC.pdf", "my_CTC.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

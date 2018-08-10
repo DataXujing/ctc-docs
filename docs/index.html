@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Connectionist Temporal Classification(CTC)</title>
+  <meta name="description" content="CTC教程">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Connectionist Temporal Classification(CTC)" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="CTC教程" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Connectionist Temporal Classification(CTC)" />
+  
+  <meta name="twitter:description" content="CTC教程" />
+  
+
+<meta name="author" content="徐静">
+
+
+<meta name="date" content="2018-08-10">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+
+<link rel="next" href="Background.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="css\style.css" type="text/css" />
+<link rel="stylesheet" href="css\toc.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="https://github.com/DataXujing/CTC" target='blank'>项目地址</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>摘要</a></li>
+<li class="chapter" data-level="1" data-path="Background.html"><a href="Background.html"><i class="fa fa-check"></i><b>1</b> 背景</a></li>
+<li class="chapter" data-level="2" data-path="From-Outputs-to-Labellings.html"><a href="From-Outputs-to-Labellings.html"><i class="fa fa-check"></i><b>2</b> 从输出到标签</a><ul>
+<li class="chapter" data-level="2.1" data-path="From-Outputs-to-Labellings.html"><a href="From-Outputs-to-Labellings.html#section-2.1"><i class="fa fa-check"></i><b>2.1</b> 符号表示</a></li>
+<li class="chapter" data-level="2.2" data-path="From-Outputs-to-Labellings.html"><a href="From-Outputs-to-Labellings.html#section-2.2"><i class="fa fa-check"></i><b>2.2</b> 空格的作用</a></li>
+<li class="chapter" data-level="2.3" data-path="From-Outputs-to-Labellings.html"><a href="From-Outputs-to-Labellings.html#section-2.3"><i class="fa fa-check"></i><b>2.3</b> 双向或单向网络</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="Forward-Backward-Algorithm.html"><a href="Forward-Backward-Algorithm.html"><i class="fa fa-check"></i><b>3</b> 前向传播与反向传播</a><ul>
+<li class="chapter" data-level="3.1" data-path="Forward-Backward-Algorithm.html"><a href="Forward-Backward-Algorithm.html#section-3.1"><i class="fa fa-check"></i><b>3.1</b> 前向传播</a></li>
+<li class="chapter" data-level="3.2" data-path="Forward-Backward-Algorithm.html"><a href="Forward-Backward-Algorithm.html#section-3.2"><i class="fa fa-check"></i><b>3.2</b> 反向传播</a></li>
+<li class="chapter" data-level="3.3" data-path="Forward-Backward-Algorithm.html"><a href="Forward-Backward-Algorithm.html#log"><i class="fa fa-check"></i><b>3.3</b> log尺度变换</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="section-4.html"><a href="section-4.html"><i class="fa fa-check"></i><b>4</b> 损失函数</a><ul>
+<li class="chapter" data-level="4.1" data-path="section-4.html"><a href="section-4.html#section-4.1"><i class="fa fa-check"></i><b>4.1</b> 损失函数的定义</a></li>
+<li class="chapter" data-level="4.2" data-path="section-4.html"><a href="section-4.html#bptt"><i class="fa fa-check"></i><b>4.2</b> 损失函数的梯度计算(BPTT)</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="decoding.html"><a href="decoding.html"><i class="fa fa-check"></i><b>5</b> Decoding</a><ul>
+<li class="chapter" data-level="5.1" data-path="decoding.html"><a href="decoding.html#best-path-decoding"><i class="fa fa-check"></i><b>5.1</b> Best Path Decoding</a></li>
+<li class="chapter" data-level="5.2" data-path="decoding.html"><a href="decoding.html#prefix-search-decoding"><i class="fa fa-check"></i><b>5.2</b> Prefix Search Decoding</a></li>
+<li class="chapter" data-level="5.3" data-path="decoding.html"><a href="decoding.html#constrained-decoding"><i class="fa fa-check"></i><b>5.3</b> Constrained Decoding</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="example.html"><a href="example.html"><i class="fa fa-check"></i><b>6</b> Example</a></li>
+<li class="chapter" data-level="7" data-path="discussion.html"><a href="discussion.html"><i class="fa fa-check"></i><b>7</b> Discussion</a></li>
+<li class="chapter" data-level="8" data-path="tensorflow-api.html"><a href="tensorflow-api.html"><i class="fa fa-check"></i><b>8</b> tensorflow API</a></li>
+<li class="chapter" data-level="9" data-path="section-9.html"><a href="section-9.html"><i class="fa fa-check"></i><b>9</b> 参考文献</a></li>
+<li class="divider"></li>
+<li><a href="https://dataxujing.github.io/" target="blank">个人主页</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Connectionist Temporal Classification(CTC)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">Connectionist Temporal Classification(CTC)</h1>
+<h4 class="author"><em>徐静</em></h4>
+<h4 class="date"><em>2018-08-10</em></h4>
+</div>
+<div id="e69198e8a681" class="section level1 unnumbered">
+<h1>摘要</h1>
+<p>本材料介绍了the connectionist temporal classification(CTC) output layer for recurrent neural networks(Graves et al.,2006), 正如CTC的名字所示它被用来处理带有时序的分类任务，特别是输入和输出label的对应关系在一起未知的这样的序列标签问题。不像一些混合方法(例如：声学模型和语言模型混合) CTC的所有方面都集成在一个单一的神经网络中，不需要在和HMM进行结合；他同时也不需预分解训练数据或者在网络输出中额外的提取标签序列。实验表明在语音识别(ASR)和手写字识别(OCR)上BLSTM+CTC相比一般的HMMs和HMM-NN混合的效果要好很多，同时相比一些比较新的序列标注算法，例如：large margin HMMs(sha and saul,2006)和condational random fields(Lafferty et al.,2001)也要好很多。</p>
+<p>第一部分我们将介绍CTC被使用在带有时序的分类任务上的原因或动机；第二部分定义CTC的输出与标签序列的对应关系；第三部分提供了一个算法来有效的估计标签序列出现的概率；第四部分网络训练中的CTC损失函数介绍；第五部分介绍了CTC中的decode方法；第六部分通过例子说明CTC；第七部分介绍了CTC和HMMs的区别；第八部分介绍了在tensorflow中的CTC API函数接口和参数。</p>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="Background.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": ["my_CTC.pdf", "my_CTC.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,18 @@
+# 参考文献
+
+[1].<https://blog.csdn.net/xmdxcsj/article/details/70300591>
+
+[2].<https://blog.csdn.net/left_think/article/details/76370453>
+
+[3].<https://blog.csdn.net/gzj_1101/article/details/80153686>
+
+[4].Supervised Sequence Labelling with Recurrent Neural Networks(chapter7)
+
+[5].<https://distill.pub/2017/ctc/>
+
+
+问题：
+
+1. 简述CTC和传统的混合模型的主要区别？
+
+2. 思考CTC和HMM的区别和联系？
